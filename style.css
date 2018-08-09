@@ -2044,13 +2044,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
   
   .headline--medium {
     font-size: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
   
   @media (min-width: 530px) {
   
     .headline--medium {
-      font-size: 2rem;
+      font-size: 2.75rem;
     }
   }
   
