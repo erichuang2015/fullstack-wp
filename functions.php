@@ -74,4 +74,11 @@
   }
 
   add_action('pre_get_posts', 'codeschool_adjust_queries');
+
+  function codeschool_map_key($api) {
+    $api['key'] = 'AIzaSyAKxBQhfXUivg62ONdBPbw0ZDYtYvSeX3w';
+    return $api;
+  }
+
+  add_filter('acf/fields/google_map/api', 'codeschool_map_key');
 ?>
