@@ -20,9 +20,9 @@
             ?> -->
             <ul>
               <li><a href="<?php echo site_url('/about-us'); ?>">About Us</a></li>
-              <li><a href="<?php echo site_url('/programs') ?>">Programs</a></li>
-              <li><a href="<?php echo site_url('/events') ?>">Events</a></li>
-              <li><a href="#">Campuses</a></li>
+              <li><a href="<?php echo get_post_type_archive_link('program') ?>">Programs</a></li>
+              <li><a href="<?php echo get_post_type_archive_link('event') ?>">Events</a></li>
+              <li><a href="<?php echo get_post_type_archive_link('campus') ?>">Campuses</a></li>
               <li><a href="<?php echo site_url('/blog'); ?>">Blog</a></li>
             </ul>
           </nav>
