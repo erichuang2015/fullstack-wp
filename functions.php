@@ -1,4 +1,5 @@
 <?php 
+
   function codeschool_files() {
     wp_enqueue_script('main_codeschool_js', get_theme_file_uri('/js/scripts-bundled.js'), NULL, '1.0', true);
     wp_enqueue_style('google_fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
@@ -16,6 +17,7 @@
     add_theme_support('post-thumbnails');
     add_image_size('professorLandscape', 400, 260, array('center', 'top'));
     add_image_size('professorPortrait', 480, 650, true);
+    add_image_size('pageBanner', 1500, 350, true);
   }
 
   add_action('after_setup_theme', 'codeschool_features');
