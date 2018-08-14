@@ -52,6 +52,10 @@
   add_action('after_setup_theme', 'codeschool_features');
 
   function codeschool_adjust_queries($query) {
+    if (!is_admin() AND is_post_type_archive('campus') AND $query->is_main_query()) {
+      $query->set('posts_per_page', -1);
+    }
+    
     if (!is_admin() AND is_post_type_archive('program') AND $query->is_main_query()) {
       $query->set('orderby', 'title');
       $query->set('order', 'ASC');
