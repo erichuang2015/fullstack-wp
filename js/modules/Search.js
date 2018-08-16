@@ -58,6 +58,16 @@ class Search {
             ${results.programs.length ? '</ul>' : ''}
 
             <h2 class="search-overlay__section-title">Professors</h2>
+            ${results.professors.length ? '<ul class="professor-cards">' : `<p>No professors match that search query.</p>`}
+              ${results.professors.map(result => `
+                <li class="professor-card__list-item">
+                  <a class="professor-card" href="${result.permalink}">
+                    <img class="professor-card__image" src="${result.image}">
+                    <span class="professor-card__name">${result.title}</span>
+                  </a>
+                </li>
+              `).join('')}
+            ${results.professors.length ? '</ul>' : ''}
 
           </div>
           <div class="one-third">
@@ -67,6 +77,19 @@ class Search {
             ${results.campuses.length ? '</ul>' : ''}
 
             <h2 class="search-overlay__section-title">Events</h2>
+            ${results.events.length ? '' : `<p>No events match that search query. <a href="${codeschoolData.root_url}/events">View all events.</a></p>`}
+              ${results.events.map(result => `
+                <div class="event-summary">
+                  <a class="event-summary__date t-center" href="${result.permalink}">
+                    <span class="event-summary__month">${result.month}</span>
+                    <span class="event-summary__day">${result.day}</span>  
+                  </a>
+                  <div class="event-summary__content">
+                    <h5 class="event-summary__title headline headline--tiny"><a href="${result.permalink}">${result.title}</a></h5>
+                    <p>${result.description}<a href="${result.permalink}" class="nu gray"> Learn more</a></p>
+                  </div>
+                </div>
+              `).join('')}
 
           </div>
         </div>
