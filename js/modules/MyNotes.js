@@ -4,9 +4,10 @@ class MyNotes {
   }
 
   events() {
-    jQuery('.delete-note').on('click', this.deleteNote);
-    jQuery('.edit-note').on('click', this.editNote.bind(this));
-    jQuery('.update-note').on('click', this.updateNote.bind(this));
+    jQuery('#my-notes').on('click', '.delete-note', this.deleteNote);
+    jQuery('#my-notes').on('click', '.edit-note', this.editNote.bind(this));
+    jQuery('#my-notes').on('click', '.update-note', this.updateNote.bind(this));
+    jQuery('.submit-note').on('click', this.createNote.bind(this));
   }
   
   // Methods
@@ -72,6 +73,42 @@ class MyNotes {
       success: (response) => {
         this.makeNoteReadOnly(thisNote);
         console.log('Saved!');
+        console.log(response);
+      },
+      error: (response) => {
+        console.log('Error:');
+        console.log(response);
+      }
+    });
+  };
+
+  createNote(e) {
+    var newPost = {
+      'title': jQuery('.new-note-title').val(),
+      'content': jQuery('.new-note-body').val(),
+      'status': 'publish'
+    }
+
+    jQuery.ajax({
+      beforeSend: (xhr) => {
+        xhr.setRequestHeader('X-WP-Nonce', codeschoolData.nonce)
+      },
+      url: codeschoolData.root_url + '/wp-json/wp/v2/note/',
+      method: 'POST',
+      data: newPost,
+      success: (response) => {
+        jQuery('.new-note-title, .new-note-body').val('');
+        jQuery(`
+          <li data-id="${response.id}">
+            <input readonly class="note-title-field" value="${response.title.raw}" type="text">
+            <span class="edit-note"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</span>
+            <span class="delete-note"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</span>
+            <textarea readonly class="note-body-field">${response.content.raw}</textarea>
+            <span class="update-note btn btn--blue btn--small"><i class="fa fa-arrow-right" aria-hidden="true"></i> Save</span>
+          </li>
+        `).prependTo('#my-notes').hide().slideDown();
+
+        console.log('Created!');
         console.log(response);
       },
       error: (response) => {
