@@ -32,7 +32,7 @@ class Search {
           this.resultsDiv.html('<div class="spinner-loader"></div>');
           this.isSpinnerVisible = true;
         }
-        this.typingTimer = setTimeout(this.getResults.bind(this), 750);
+        this.typingTimer = setTimeout(this.getResults.bind(this), 500);
       } else {
         this.resultsDiv.html("");
         this.isSpinnerVisible = false;
