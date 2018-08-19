@@ -8,7 +8,9 @@
 <?php 
   while(have_posts()) {
     the_post(); 
-    pageBanner();
+    pageBanner(array(
+      'subtitle' => 'When you\'re done creating a note, click the search icon in the main navigation to search the entire site using an AJAX apprach (Javascript must be enabled)'
+    ));
     ?>
     
     <div class="container container--narrow page-section">

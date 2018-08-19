@@ -3,9 +3,17 @@
 <div class="page-banner">
   <div class="page-banner__bg-image" style="background-image: url(<?php echo get_theme_file_uri('/images/library-hero.jpg'); ?>);"></div>
     <div class="page-banner__content container t-center c-white" style="margin-top: 25px; margin-bottom: 65px;">
-      <h1 class="headline headline--large">Welcome!</h1>
-      <h2 class="headline headline--medium"><?php bloginfo('description'); ?></h2>
-      <a href="#" class="btn btn--large btn--white">Sign Up!</a>
+
+      <?php if (is_user_logged_in()) { ?>
+        <h1 class="headline headline--large">Cool,</h1>
+        <h2 class="headline headline--medium">Click 'My Notes' to play with a cool SPA using custom REST routes and post types</h2>
+        <a href="<?php echo esc_url(site_url('/my-notes')); ?>" class="btn btn--large btn--white">My Notes</a>
+      <?php } else { ?>
+        <h1 class="headline headline--large">I'm Matt</h1>
+        <h2 class="headline headline--medium">Click 'Sign Up' to see what I'm capable of doing with Wordpress</h2>
+        <a href="<?php echo wp_registration_url(); ?>" class="btn btn--large btn--white">My Notes</a>
+      <?php } ?>
+
     </div>
   </div>
 
